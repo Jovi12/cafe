@@ -64,7 +64,7 @@ public static String username;
 		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0,0,1200,800);
+		setBounds(0,0,998,602);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -85,14 +85,14 @@ public static String username;
 		contentPane.add(btnLogout);
 		
 		JButton btnPlaceOrder = new JButton("Place Order");
+		btnPlaceOrder.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new bill().setVisible(true);
+			}});
 		btnPlaceOrder.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnPlaceOrder.setBounds(212, 11, 130, 21);
 		contentPane.add(btnPlaceOrder);
-		
-		JButton btnViewBillOrderDet = new JButton("View Bill And Order Placed Details");
-		btnViewBillOrderDet.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnViewBillOrderDet.setBounds(394, 10, 302, 21);
-		contentPane.add(btnViewBillOrderDet);
 		
 		JButton btnSecurityQuestion = new JButton("Security Question");
 		btnSecurityQuestion.addActionListener(new ActionListener() {
@@ -120,26 +120,26 @@ public static String username;
 		JButton btnManageCategory = new JButton("Manage Category");
 		btnManageCategory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new ManageCategoryy().setVisible(true);
-			}});
+				setVisible(false);
+				new foodd().setVisible(true);
+				
+				
+			}
+
+			});
 		btnManageCategory.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnManageCategory.setBounds(59, 700, 178, 21);
+		btnManageCategory.setBounds(106, 148, 178, 21);
 		contentPane.add(btnManageCategory);
 		
 		JButton btnNewProduct = new JButton("New Product");
+		btnNewProduct.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new AddNewProduct().setVisible(true);
+			}
+		});
 		btnNewProduct.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnNewProduct.setBounds(312, 700, 130, 21);
 		contentPane.add(btnNewProduct);
-		
-		JButton btnViewEditDel = new JButton("View Edit And Delete Product\r\n ");
-		btnViewEditDel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnViewEditDel.setBounds(526, 700, 302, 21);
-		contentPane.add(btnViewEditDel);
-		
-		JButton btnVerify = new JButton("Verify Users");
-		btnVerify.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnVerify.setBounds(897, 700, 176, 21);
-		contentPane.add(btnVerify);
 	}
 
 	private void initComponents() {

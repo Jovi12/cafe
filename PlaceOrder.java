@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
@@ -19,6 +20,8 @@ import javax.swing.JSpinner;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollBar;
+import javax.swing.JSpinner;
 
 public class PlaceOrder extends JFrame {
 	private JTextField txtName;
@@ -29,7 +32,18 @@ public class PlaceOrder extends JFrame {
 	private JTextField txtPrice;
 	private JTextField txttotal;
 	private JTextField tTotal;
-	private JTable table;
+	private JTable tablename;
+	private JTable tablecategory;
+	public String username;
+	public int billId=1;
+	public int grandTotal=0;
+	public int productTotal=0;
+	public int productPrice=0;
+	public String emailPattern="^[a-zA-Z0-9]+[@]+[a-zA-Z0-9]+[.]+[a-zA-Z0-9]+$";
+	public String MobileNumberPattern="^[0-9]*$"; 
+	private JButton btnAddtoCart;
+	private JButton btnGenerateBill;
+	private JSpinner spinner;
 
 	/**
 	 * Launch the application.
@@ -49,8 +63,31 @@ public class PlaceOrder extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * 
 	 */
 	public PlaceOrder() {
+		initComponents();
+	}
+	public PlaceOrder(String name) {
+		initComponents();
+		txtitname.setEditable(false);
+		txtPrice.setEditable(false);
+		txttotal.setEditable(false);
+		btnAddtoCart.setEnabled(false);
+		btnGenerateBill.setEnabled(false);
+		JFormattedTextField tf=((JSpinner.DefaultEditor)spinner.getEditor()).getTextField();
+		tf.setEnabled(false);
+		username=name;
+	
+	}
+	public void productNameByCategory(String category) {
+		DefaultTableModel dtm=(DefaultTableModel) tablecategory.getModel();
+		dtm.setRowCount(0);
+		ArrayList<Product>List =Product
+	}
+	
+	
+	public void initComponents() {
 		String col1[][]= {{"Name"}};
 		String col[]= {""};
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -68,6 +105,8 @@ public class PlaceOrder extends JFrame {
 		JButton btnClose = new JButton("Close");
 		btnClose.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new Home().setVisible(true);
 				
 			}
 		});
@@ -183,28 +222,40 @@ public class PlaceOrder extends JFrame {
 		contentPane.add(spinner);
 		
 		JLabel lblPage = new JLabel("Place Order Page");
-		lblPage.setBounds(10, 709, 354, 54);
+		lblPage.setBounds(10, 680, 354, 54);
 		lblPage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPage.setFont(new Font("Tahoma", Font.BOLD, 24));
 		contentPane.add(lblPage);
 		
 		JButton btnGenerateBill = new JButton("Generate Bill");
 		btnGenerateBill.setFont(new Font("Tahoma", Font.BOLD, 14));
-		btnGenerateBill.setBounds(708, 730, 144, 33);
+		btnGenerateBill.setBounds(759, 668, 126, 54);
 		contentPane.add(btnGenerateBill);
 		
 		JLabel lbltotal = new JLabel("Grand Total");
 		lbltotal.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lbltotal.setBounds(505, 727, 126, 36);
+		lbltotal.setBounds(507, 693, 126, 36);
 		contentPane.add(lbltotal);
 		
 		tTotal = new JTextField();
-		tTotal.setBounds(610, 744, 41, 19);
+		tTotal.setBounds(608, 695, 85, 27);
 		contentPane.add(tTotal);
 		tTotal.setColumns(10);
 		
-		table = new JTable();
-		table.setBounds(73, 505, 690, 124);
-		contentPane.add(table);
+		tablename = new JTable();
+		tablename.setBounds(484, 337, 427, 316);
+		contentPane.add(tablename);
+		
+		tablecategory = new JTable();
+		tablecategory.setBounds(82, 500, 311, 148);
+		contentPane.add(tablecategory);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBounds(487, 363, 427, 290);
+		contentPane.add(scrollBar);
+		
+		JScrollBar scrollBar_1 = new JScrollBar();
+		scrollBar_1.setBounds(82, 500, 311, 148);
+		contentPane.add(scrollBar_1);
 	}
 }

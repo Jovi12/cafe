@@ -2,6 +2,7 @@ package dao;
 
 import javax.swing.JOptionPane;
 
+
 import java.sql.*;
 
 public class DbOperation {
@@ -19,7 +20,7 @@ public class DbOperation {
 		}
 	}
 	
-	public static void  ResultSet getData(String query) {
+	public static ResultSet getData(String query) {
 		try {
 			Connection con=ConnectionProvider.getCon();
 			Statement st=con.createStatement();

@@ -129,7 +129,8 @@ public class EXP11 {
 					ResultSet rs=stmt.executeQuery(sql);
 					if(rs.next()) {
 						JOptionPane.showMessageDialog(null,"Login Successfull");
-					setVisible(true);
+					setVisible(false);
+					
 					new Home().setVisible(true);
 					
 					
